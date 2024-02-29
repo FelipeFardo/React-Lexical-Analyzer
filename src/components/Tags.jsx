@@ -10,7 +10,7 @@ const Tags = ()=>{
   <div style={{marginLeft:'5px'}}>
     {tags.length>0 ?
       <>
-        <p>Sugestões</p>
+        <p>Suggestions</p>
         <Stack direction="horizontal" gap={2}>
         {tags.map((e)=>(
           <Badge pill className="mb-3" bg="dark" key={e}>{e}</Badge>
@@ -18,7 +18,7 @@ const Tags = ()=>{
         </Stack>
       </>
       :
-      <p>Não possui sugestões</p>}
+      <p>No suggestions</p>}
   </div>
   )
 }

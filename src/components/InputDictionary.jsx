@@ -4,9 +4,10 @@ import toast from "react-hot-toast";
 import { z } from "zod";
 
 const schema = z.string()
-.refine((value=> value.length>0),{message:'Digite um token'})
+.toLowerCase()
+.refine((value=> value.length>0),{message:'Enter a token'})
 .refine(
-  (value) => /^[a-zA-Z]+$/.test(value), "Apenas letras são permitidas, sem espaços");
+  (value) => /^[a-zA-Z]+$/.test(value), "Only letters are allowed, no spaces");
 
 
 const InputDictionary = ()=> {
@@ -21,9 +22,9 @@ const InputDictionary = ()=> {
       toast.error(error.issues[0].message);
       return
     }
-    if (tokens.includes(data.token)) return toast.error('Esse token já existe no dicionário');
+    if (tokens.includes(data.token)) return toast.error('This token already exists in the dictionary');
     insertToken(data.token);
-    toast.success(data.token + ' foi adicionado!');
+    toast.success(data.token + ' has been added');
     setValue("token", "");
   }
   
@@ -36,7 +37,7 @@ const InputDictionary = ()=> {
           className="form-control" placeholder=""/>
           <label for="floatingInput">Token</label>
         </div>
-          <input type="submit" className="btn btn-dark w-100"  value="Adicionar"/>
+          <input type="submit" className="btn btn-dark w-100"  value="Add Token"/>
       </form>
     </>
   )

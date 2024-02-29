@@ -20,7 +20,7 @@ const Analyzer = () =>{
  
   console.log("Analyzer:", analyzer)
   console.log("Table data:", tableData)
-  // Função para verificar se um token é válido letra por letra
+  // Função para verificar se um token é válido letter por letter
   const isValidToken = () => {
     if (tokenSearch.length === 1) {
       currentRow = 0;
@@ -36,27 +36,26 @@ const Analyzer = () =>{
 
   const valid = isValidToken();
 
-    useEffect(() => {
-      const scrollContainer = document.getElementById('table');
+  useEffect(() => {
+    const scrollContainer = document.getElementById('table');
 
-      if (currentRow<=1) document.getElementById('tabelacontainer').scrollTo({top: 0,behavior: 'smooth'});
+    if (currentRow<=1) document.getElementById('tablecontainer').scrollTo({top: 0,behavior: 'smooth'});
   
-      
-      let linhaDesejada=scrollContainer.rows[currentRow];
-      linhaDesejada.scrollIntoView({ behavior: 'smooth' });
-  }, [currentRow]);
+    let linhaDesejada=scrollContainer.rows[currentRow];
+    linhaDesejada.scrollIntoView({ behavior: 'smooth' });
+  }, [currentRow])
   // Renderização da tabela e estilização condicional com base nas condições
   return (
-  <div className="table-wrapper-scroll-y my-custom-scrollbar" id="tabelacontainer" style={{height:370,overflow: "auto"}}>
+  <div className="table-wrapper-scroll-y my-custom-scrollbar" id="tablecontainer" style={{height:"55vh",overflow: "auto"}}>
 
     {/* Tabela que mostra as transições do AFD */}
     <table className="table table-bordered table-striped" id="table"  style={{fontSize:13}}>
-    {/* Cabeçalho da tabela com as letras do alfabeto como colunas */}
+    {/* Cabeçalho da tabela com as letters do alfabeto como colunas */}
     <thead className="sticky-top">
       <tr className="text-center ">
         {/* Estados */}
         <th scope="col" >δ</th>
-        {/* Percorrer letras do alfabeto e renderizar o cabeçalho da tabela */}
+        {/* Percorrer letters do alfabeto e renderizar o cabeçalho da tabela */}
         {letters.map((l)=>(<th key={l} scope="col">{l.toUpperCase()}</th>))}
       </tr>
       </thead>
@@ -72,22 +71,23 @@ const Analyzer = () =>{
               >
           {/* Célula representando o estado atual da linha */}
           <td>
-            {`q${rowIndex}`}{analyzer[rowIndex].end === true ? `*` : ``}
+            {`q${rowIndex}`}  
+            {analyzer[rowIndex].end === true ?<b style={{float:"right"}}>*</b> : null}
           </td>
               {/* Mapeia cada célula da linha representando as transições e adiciona a classe de acordo com o token pesquisado */}
-              {row.map((letra, letraIndex)=>(
+              {row.map((letter, letterIndex)=>(
                 <td
-                key={letraIndex}
+                key={letterIndex}
                   className={`
                   ${rowIndex === currentRow &&
-                    valid && letra &&
-                    tokenSearch[tokenSearch.length - 1] === letters[letraIndex] 
+                    valid && letter &&
+                    tokenSearch[tokenSearch.length - 1] === letters[letterIndex] 
                       ? 'bg-success'
                       : 'bg-transparent'
                   }`}
                   >
-                    {/* Exibe o ponteiro da proxíma letra(próximo estado na célula), ou '-' se não houver transição */}
-                    {letra ? `q${letra}` : '-'}
+                    {/* Exibe o ponteiro da proxíma letter(próximo estado na célula), ou '-' se não houver transição */}
+                    {letter ? `q${letter}` : '-'}
                   </td>
               ))}
           </tr>

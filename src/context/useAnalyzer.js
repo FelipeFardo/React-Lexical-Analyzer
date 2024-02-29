@@ -34,11 +34,12 @@ export const useAnalyzer = create((set) => ({
       set((state)=>({
         state: {
           ...state.state,
-          analyzer: function(){
+          analyzer: (()=>{
+          // inicialização de variáveis
           const analyzer = [[]];
           let step = 0;
           // Percorre cada token no array de tokens
-          state.state.tokens.map((token)=>{
+          state.state.tokens.map((token) => {
             let currentStep = 0;
             // Itera sobre cada letra no token
               token.split('').forEach((letter, letterIndex) => {
@@ -54,7 +55,7 @@ export const useAnalyzer = create((set) => ({
           });
           // Retorna o array de estados criado
           return analyzer;
-      }()
+      })()
     }})),
     // Reseta o estado para um conjunto vazio
     resetTokens: () =>

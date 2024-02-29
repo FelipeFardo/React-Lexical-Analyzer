@@ -14,7 +14,7 @@ const Dictionary = (props) =>{
 
   const removerTokenFunc = (token) => {
     removeToken(token);
-    toast.success(token+ ' foi removido com sucesso!');
+    toast.success(token+ ' has been successfully removed!');
   }
   
   return (
@@ -27,12 +27,11 @@ const Dictionary = (props) =>{
     >
       <Modal.Header closeButton>
         <Modal.Title>
-          Dicionário
+          Dictionary
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div style={{marginRight:10}}>
-          <h5 className="m-2 text-center">Adicionar Token</h5>
           <div className="mb-3">
             <InputDictionary/>
           </div>
@@ -45,14 +44,14 @@ const Dictionary = (props) =>{
                 </li>
                 ))}
               </ul>
-              {!tokens.length&& <p className="text-center">Adicione mais tokens</p>}
+              {!tokens.length && <p className="text-center">add more tokens</p>}
           </div>
       </div>
       </Modal.Body>
         <Modal.Footer>
           <Button variant='danger' onClick={()=>{
-            toast.success("Dicionário resetado");
-            resetTokens()}}>Resetar</Button>
+            toast.success("Dictionary reset");
+            resetTokens()}}>Reset</Button>
         </Modal.Footer>
     </Modal>
   </>
